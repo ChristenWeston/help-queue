@@ -12,8 +12,6 @@ function App(){
     <React.Fragment>
       <Header />
       <TicketControl />
-      <TestControl />
-
     </React.Fragment>
   );
 }

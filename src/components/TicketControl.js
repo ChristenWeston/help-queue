@@ -13,7 +13,7 @@ class TicketControl extends React.Component {
     super(props);
     console.log(props);
     this.state = {
-      formVisibleOnPage: false,
+      // formVisibleOnPage: false,
       // Initializing list as an empty array and including it as a prop target
       // Selected ticket starts as null because no ticket has been selected yet
       selectedTicket: null,
@@ -24,14 +24,15 @@ class TicketControl extends React.Component {
 handleClick = () => {
   if (this.state.selectedTicket != null) {
     this.setState({
-      formVisibleOnPage: false,
       selectedTicket: null,
       editing: false
     });
   } else {
-    this.setState(prevState => ({
-      formVisibleOnPage: !prevState.formVisibleOnPage,
-    }));
+    const { dispatch } = this.props;
+    const action = {
+      type: 'TOGGLE_FORM'
+    }
+    dispatch(action);
   }
 }
 
@@ -46,7 +47,10 @@ handleAddingNewTicketToList = (newTicket) => {
     issue: issue,
   }
   dispatch(action);
-  this.setState({formVisibleOnPage: false});
+  const action2 = {
+    type: 'TOGGLE_FORM'
+  }
+  dispatch(action2);
 }
 
   handleChangingSelectedTicket = (id) => {
@@ -100,7 +104,7 @@ handleAddingNewTicketToList = (newTicket) => {
         onClickingEdit = {this.handleEditClick} />
       buttonText = "Return to Ticket List";
       // While our TicketDetail component only takes placeholder data, we will eventually be passing the value of selectedTicket as a prop.
-    } else if (this.state.formVisibleOnPage) {
+    } else if (this.props.formVisibleOnPage) {
       // passing mainTicketList down to TicketList here
       currentlyVisibleState = <NewTicketForm onNewTicketCreation={this.handleAddingNewTicketToList}  />;
       buttonText = "Return to Ticket List";
@@ -119,13 +123,14 @@ handleAddingNewTicketToList = (newTicket) => {
 }
 
 TicketControl.propTypes = {
-  mainTicketList: PropTypes.object
+  mainTicketList: PropTypes.object,
+  formVisibleOnPage: PropTypes.bool
 };
 
 const mapStateToProps = state => {
   return {
-      // Key-value pairs of state to be mapped from Redux to React component go here.
-    mainTicketList: state
+    mainTicketList: state.mainTicketList,
+    formVisibleOnPage: state.formVisibleOnPage
   }
 }
 
