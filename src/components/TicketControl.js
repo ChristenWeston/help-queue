@@ -21,6 +21,32 @@ class TicketControl extends React.Component {
       editing: false
     };
   }
+
+  componentDidMount() {
+    this.waitTimeUpdateTimer = setInterval(() =>
+      this.updateTicketElapsedWaitTime(),
+    60000
+    );
+  }
+
+  // Will not be using
+  componentDidUpdate() {
+    console.log("component updated!");
+  }
+
+  componentWillUnmount(){
+    console.log("component unmounted!");
+    clearInterval(this.waitTimeUpdateTimer);
+  }
+
+  updateTicketElapsedWaitTime = () => {
+    const { dispatch } = this.props;
+    Object.values(this.props.mainTicketList).forEach(ticket => {
+      const newFormattedWaitTime = ticket.timeOpen.fromNow(true);
+      const action = a.updateTime(ticket.id, newFormattedWaitTime);
+      dispatch(action);
+    });
+  }
 // Important to use arrow notation so that this is automatically bound to its lexical scope, which is an instance of the class itself.
 handleClick = () => {
   if (this.state.selectedTicket != null) {
