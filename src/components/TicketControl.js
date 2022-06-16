@@ -131,7 +131,7 @@ TicketControl.propTypes = {
   mainTicketList: PropTypes.object,
   formVisibleOnPage: PropTypes.bool
 };
-
+// state comes from our friend Redux
 const mapStateToProps = state => {
   return {
     mainTicketList: state.mainTicketList,
