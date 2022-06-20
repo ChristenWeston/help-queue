@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import Header from "./Header";
 import TicketControl from "./TicketControl";
 
@@ -6,9 +6,24 @@ import TicketControl from "./TicketControl";
 // To return multiple elements, the code in a function compelent's return statement must be wrapped in a single JSX element. That will typically be a <div> or <React.Fragment>
 // All components returning more than one element must be wrapped in a React.Fragment
 function App(){
+
+  const [counter, setCounter] = useState(0);
+  const [hidden, setHidden] = useState(true);
+  const [disabled, setDisabled] = useState(true);
+
+  function setCounterAndDisabled() {
+    setCounter(counter + 1);
+    setDisabled(false);
+  }
+
   return ( 
+    
     <React.Fragment>
       <Header />
+      {hidden ? <h1>{counter}</h1> : <h1>Count Hidden</h1>}
+      <button onClick={() => setCounterAndDisabled()}>Count!</button>
+      <button disabled = {disabled} onClick={() => setHidden(!hidden)}>Hide/Show</button>
+
       <TicketControl />
     </React.Fragment>
   );
