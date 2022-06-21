@@ -14,7 +14,6 @@ import "firebase/compat/auth"
 import "firebase/compat/firestore"
 
 const store = createStore(rootReducer);
-console.log("Process.env" + process.env.REACT_APP_FIREBASE_API_KEY);
 const rrfProps = {
   firebase,
   config: {

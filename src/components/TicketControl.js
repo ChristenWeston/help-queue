@@ -68,10 +68,18 @@ handleAddingNewTicketToList = () => {
   dispatch(action);
 }
 
-  handleChangingSelectedTicket = (id) => {
-    const selectedTicket = this.props.mainTicketList[id];
-    this.setState({selectedTicket: selectedTicket});
-  }
+handleChangingSelectedTicket = (id) => {
+  this.props.firestore.get({collection: 'tickets', doc: id}).then((ticket) => {
+    // this returns a DocumentSnapshot - a Firestore object. Need to use get method to get all properties except id
+    const firestoreTicket = {
+      names: ticket.get("names"),
+      location: ticket.get("location"),
+      issue: ticket.get("issue"),
+      id: ticket.id
+    }
+    this.setState({selectedTicket: firestoreTicket });
+  });
+}
 
   handleDeletingTicket = (id) => {
     const { dispatch } = this.props;
