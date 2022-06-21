@@ -1,7 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TestControl from "./TestControl";
-
 
 function Ticket(props){
   return (

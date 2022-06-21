@@ -7,6 +7,7 @@ import { v4 } from 'uuid';
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 import * as a from './../actions';
+import { withFirestore } from "react-redux-firebase";
 
 class TicketControl extends React.Component {
 
@@ -61,12 +62,10 @@ handleClick = () => {
   }
 }
 
-handleAddingNewTicketToList = (newTicket) => {
+handleAddingNewTicketToList = () => {
   const { dispatch } = this.props;
-  const action = a.addTicket(newTicket);
+  const action = a.toggleForm();
   dispatch(action);
-  const action2 = a.toggleForm();
-  dispatch(action2);
 }
 
   handleChangingSelectedTicket = (id) => {
@@ -85,15 +84,15 @@ handleAddingNewTicketToList = (newTicket) => {
     this.setState({editing: true});
   }
 
-  handleEditingTicketInList = (ticketToEdit) => {
-    const { dispatch } = this.props;
-    const action = a.addTicket(ticketToEdit);
-    dispatch(action);
-    this.setState({
-      editing: false,
-      selectedTicket: null
-    });
-  }
+  // handleEditingTicketInList = (ticketToEdit) => {
+  //   const { dispatch } = this.props;
+  //   const action = a.addTicket(ticketToEdit);
+  //   dispatch(action);
+  //   this.setState({
+  //     editing: false,
+  //     selectedTicket: null
+  //   });
+  // }
 
   render(){
     let currentlyVisibleState = null;
@@ -140,4 +139,4 @@ const mapStateToProps = state => {
 }
 
 TicketControl = connect(mapStateToProps)(TicketControl);
-export default TicketControl;
+export default withFirestore(TicketControl);
