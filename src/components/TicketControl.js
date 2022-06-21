@@ -81,26 +81,22 @@ handleChangingSelectedTicket = (id) => {
   });
 }
 
-  handleDeletingTicket = (id) => {
-    const { dispatch } = this.props;
-    const action = a.deleteTicket(id);
-    dispatch(action);
-    this.setState({selectedTicket: null});
-  }
+handleDeletingTicket = (id) => {
+  this.props.firestore.delete({collection: 'tickets', doc: id});
+  this.setState({selectedTicket: null});
+}
+
   handleEditClick = () => {
     console.log("handleEditClick reached!");
     this.setState({editing: true});
   }
-
-  // handleEditingTicketInList = (ticketToEdit) => {
-  //   const { dispatch } = this.props;
-  //   const action = a.addTicket(ticketToEdit);
-  //   dispatch(action);
-  //   this.setState({
-  //     editing: false,
-  //     selectedTicket: null
-  //   });
-  // }
+// handleEditingTicketInList is passed down to EditTicketForm as onEditTicket()
+  handleEditingTicketInList = () => {
+    this.setState({
+      editing: false,
+      selectedTicket: null
+    });
+  }
 
   render(){
     let currentlyVisibleState = null;
