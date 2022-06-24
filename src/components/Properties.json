@@ -1,0 +1,32 @@
+[
+  {
+      "id": "0",
+      "name": "Mt Tabor",
+      "lat": 45.512660385980794,
+      "lng": -122.59435712512872
+  },
+  {
+      "id": "1",
+      "name": "Leach Botanical Garden",
+      "lat": 45.47559825717784,
+      "lng": -122.53564893387593
+  },
+  {
+      "id": "2",
+      "name": "Crystal Springs Rhododendron Garden",
+      "lat": 45.47710287706964,
+      "lng": -122.63684331637737
+  },
+  {
+      "id": "3",
+      "name": "Laurelhurst Park",
+      "lat": 45.52180183501188,
+      "lng": -122.62568532656492
+  },
+  {
+      "id": "4",
+      "name": "Lan Su Chinese Garden",
+      "lat": 45.52661252732071,
+      "lng": -122.67332135870465
+  }
+]
