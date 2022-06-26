@@ -5,16 +5,38 @@ import {
     withGoogleMap, 
     Marker,
     InfoWindow,
-    DirectionsRenderer
+    DirectionsRenderer,
+    GroundOverlay,
+    Polygon
 } from "react-google-maps";
 import properties from "./Properties.json";
-import MapDirectionsRenderer from './Directions';
 
 function MapComponent() {
     const [selectedProperty, setSelectedProperty] = useState(null);
-
-    // function Directions() {
-      
+    const paths = [
+      { lat: 25.774, lng: -80.19 },
+      { lat: 18.466, lng: -66.118 },
+      { lat: 32.321, lng: -64.757 },
+      { lat: 25.774, lng: -80.19 }
+    ]
+    
+    const options = {
+      fillColor: "lightblue",
+      fillOpacity: 1,
+      strokeColor: "red",
+      strokeOpacity: 1,
+      strokeWeight: 2,
+      clickable: false,
+      draggable: false,
+      editable: false,
+      geodesic: false,
+      zIndex: 1
+    }
+    
+    const onLoad = polygon => {
+      console.log("polygon: ", polygon);
+    }
+    
         const [map, setMap] = useState(/** @type google.maps.Map */ (null))
         const [directionsResponse, setDirectionsResponse] = useState(null)
         const [distance, setDistance] = useState('')
@@ -49,13 +71,13 @@ function MapComponent() {
         originRef.current.value = ''
         destiantionRef.current.value = ''
       }
-      // }
 
     return (
         <GoogleMap 
             defaultZoom={12}
             defaultCenter={{ lat: 45.50369791922873, lng: -122.58457242648787 }}
         >
+          
             {properties.map(property => (
                 <Marker 
                     key={property.id} 
@@ -89,6 +111,12 @@ function MapComponent() {
                 </InfoWindow>
 
             )}
+
+<Polygon
+      onLoad={onLoad}
+      paths={paths}
+      options={options}
+    />
           {directionsResponse && (
             <DirectionsRenderer directions={directionsResponse} />
           )}
@@ -101,6 +129,7 @@ function MapComponent() {
             <button colorScheme='pink' type='submit' onClick={calculateRoute}>
               Calculate Route
             </button>
+
         </GoogleMap>
     )
 }

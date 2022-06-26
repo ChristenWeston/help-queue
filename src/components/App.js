@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Header from "./Header";
 import TicketControl from "./TicketControl";
 import Map from "./Map";
-import Directions from "./Directions";
-
+import Signin from "./Signin";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 //Under the hood React is actually using a method called React.createElement() to create the HTML elements
 // To return multiple elements, the code in a function compelent's return statement must be wrapped in a single JSX element. That will typically be a <div> or <React.Fragment>
@@ -22,18 +22,27 @@ function App(){
   return ( 
     
     <React.Fragment>
-      <Header />
-      <div id="mapContainer">
-            <div id="mapClipPath">
-                <Map />
-            </div>
-        </div>
-        <Directions />
-      {hidden ? <h1>{counter}</h1> : <h1>Count Hidden</h1>}
-      <button onClick={() => setCounterAndDisabled()}>Count!</button>
-      <button disabled = {disabled} onClick={() => setHidden(!hidden)}>Hide/Show</button>
+      <Router>
+        <Header />
+        {/* <div id="mapContainer">
+              <div id="mapClipPath">
+                  <Map />
+              </div>
+          </div>
 
-      <TicketControl />
+        {hidden ? <h1>{counter}</h1> : <h1>Count Hidden</h1>}
+        <button onClick={() => setCounterAndDisabled()}>Count!</button>
+        <button disabled = {disabled} onClick={() => setHidden(!hidden)}>Hide/Show</button> */}
+        <Switch>
+        <Route path="/signin">
+          <Signin />
+        </Route>
+        <Route path="/">
+          <TicketControl />
+        </Route>
+      </Switch>
+        {/* <TicketControl /> */}
+      </Router>
     </React.Fragment>
   );
 }
