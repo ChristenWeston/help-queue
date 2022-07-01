@@ -1,13 +1,13 @@
 import React, { useEffect, useState, Component } from "react";
 import firebase from "firebase/compat";
-// import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { isLoaded, isEmpty } from 'react-redux-firebase'
 
 function Signin(){  
   const [signedIn, setSignedIn] = useState(false);
-  // const navigate = useNavigate();
+  const history = useHistory();
 
   function doSignUp(event) {
     event.preventDefault();
@@ -26,6 +26,7 @@ function Signin(){
     const password = event.target.signinPassword.value;
     
     firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+      history.push("/");
      }).catch(function(error) {
       console.log(error.message);
     });
