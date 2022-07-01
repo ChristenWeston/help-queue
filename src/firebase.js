@@ -1,7 +1,7 @@
 // import * as firebase from 'firebase';
 // import { initializeApp } from 'firebase/app';
 // import 'firebase/firestore';
-import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
+import { getFirestore, collection, query, where, getDocs, getAuth } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 // import * as firebase from 'firebase/compact/app';
 

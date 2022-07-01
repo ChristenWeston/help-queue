@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect, useState, Component } from "react";
 import firebase from "firebase/compat";
+// import { useNavigate } from "react-router-dom";
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { isLoaded, isEmpty } from 'react-redux-firebase'
 
 function Signin(){  
+  const [signedIn, setSignedIn] = useState(false);
+  // const navigate = useNavigate();
+
   function doSignUp(event) {
     event.preventDefault();
     const email = event.target.email.value;
@@ -17,9 +24,9 @@ function Signin(){
     event.preventDefault();
     const email = event.target.signinEmail.value;
     const password = event.target.signinPassword.value;
+    
     firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-      console.log("Successfully signed in!");
-    }).catch(function(error) {
+     }).catch(function(error) {
       console.log(error.message);
     });
   }

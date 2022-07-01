@@ -99,6 +99,7 @@ handleDeletingTicket = (id) => {
   }
 
   render(){
+    console.log("Render");
     const auth = this.props.firebase.auth();
     if (!isLoaded(auth)) {
       return (
@@ -118,6 +119,7 @@ handleDeletingTicket = (id) => {
     if ((isLoaded(auth)) && (auth.currentUser != null)) {
       let currentlyVisibleState = null;
       let buttonText = null; 
+      console.log("isLoaded and auth.currentUser is not null: " + auth.currentUser);
 
       if (this.state.editing ) {      
         currentlyVisibleState = <EditTicketForm ticket = {this.state.selectedTicket} 
@@ -138,7 +140,6 @@ handleDeletingTicket = (id) => {
         // Because a user will actually be clicking on the ticket in the Ticket component, we will need to pass our new handleChangingSelectedTicket method as a prop.
         buttonText = "Add Ticket";
       }
-    
       return (
         <React.Fragment>
           {currentlyVisibleState}
