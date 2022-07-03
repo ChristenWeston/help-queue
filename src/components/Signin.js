@@ -1,8 +1,6 @@
 import React, { useEffect, useState, Component } from "react";
 import firebase from "firebase/compat";
 import { useHistory } from "react-router-dom";
-import { compose } from 'redux'
-import { connect } from 'react-redux'
 import { isLoaded, isEmpty } from 'react-redux-firebase'
 
 function Signin(){  

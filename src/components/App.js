@@ -24,14 +24,14 @@ function App(){
     <React.Fragment>
         <Router>
           <Header />
-          {/* <div id="mapContainer">
+          <div id="mapContainer">
                 <div id="mapClipPath">
                     <Map />
                 </div>
             </div>
           {hidden ? <h1>{counter}</h1> : <h1>Count Hidden</h1>}
           <button onClick={() => setCounterAndDisabled()}>Count!</button>
-          <button disabled = {disabled} onClick={() => setHidden(!hidden)}>Hide/Show</button> */}
+          <button disabled = {disabled} onClick={() => setHidden(!hidden)}>Hide/Show</button>
           <Switch>
           <Route path="/signin">
             <Signin />
