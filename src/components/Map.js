@@ -44,9 +44,6 @@ function MapComponent() {
         const [waypoints, setWaypoints] = useState([]);
         const [distance, setDistance] = useState('')
         const [duration, setDuration] = useState('')
-      //2606 SE 78th Ave Portland, OR 97206
-      //6236 SE Stephens St Portland, OR 97206
-      // 5925 Locust St Kansas City, MO 64110
         /** @type React.MutableRefObject<HTMLInputElement> */
         const originRef = useRef()
         /** @type React.MutableRefObject<HTMLInputElement> */
